@@ -9,7 +9,7 @@
         // backendUrl: 'https://widge-chat-tracking.netlify.app/.netlify/functions/collect-lead', 
         backendUrl: window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'
             ? 'http://localhost:8888/.netlify/functions/collect-lead'
-            : 'https://widge-chat-tracking.netlify.app/.netlify/functions/collect-lead',
+            : 'https://chat-widget-tst/.netlify/functions/collect-lead',
         delays: {
             typing: 1000,
             message: 1500,
