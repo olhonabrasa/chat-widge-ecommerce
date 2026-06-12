@@ -6,7 +6,7 @@
         // backendUrl: 'https://widge-chat-tracking.netlify.app/.netlify/functions/submit-modal-lead',
         backendUrl: window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'
             ? 'http://localhost:8888/.netlify/functions/collect-lead'
-            : 'https://widge-chat-tracking.netlify.app/.netlify/functions/collect-lead',
+            : 'https://chat-widget-tst.netlify.app/.netlify/functions/collect-lead',
 
         primaryColor: '#ea6029', // Olho na Brasa Orange
         secondaryColor: '#d15423', // Darker Orange
