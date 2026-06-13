@@ -6,7 +6,7 @@
         textColor: '#ffffff',
         botName: 'Projetos Olho na Brasa',
         botAvatar: 'https://s3.1app.com.br/master/project_24727/xy6IrcJy1jkUGTlM4qSc7cF1suHmQyDE.jpg',
-        // backendUrl: 'https://chat-widget-tst/.netlify/functions/collect-lead', 
+        // backendUrl: 'https://chat-widget-tst.netlify.app/.netlify/functions/collect-lead', 
         backendUrl: window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'
             ? 'http://localhost:8888/.netlify/functions/collect-lead'
             : 'https://chat-widget-tst.netlify.app/.netlify/functions/collect-lead',
