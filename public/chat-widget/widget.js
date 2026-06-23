@@ -140,7 +140,7 @@
         lead: { name: '', email: '', phone: '', cep: '' },
         survey: {},
         tracking: {},
-        callout: { active: true, timer: null, msgIndex: 0 },
+        callout: { active: false, timer: null, msgIndex: 0 },
         tempCheckboxValues: [], // Store checkbox values before confirming
         validationAttempts: 0
     };
