@@ -570,20 +570,51 @@
     // Redundant functions removed as interest is now captured in the initial form.
     // lbShowInterestOptions, lbHandleInterest, lbShowProjectOptions, lbHandleProject deleted.
 
+    // --- Build WhatsApp deep link with tracking ref tag ---
+    function buildWhatsAppLink() {
+        const targetNumber = '554740420956';
+        const firstName = (state.lead.name || '').split(' ')[0] || '';
+        const interest = state.lead.interest || 'Kit Suporte Suspenso';
+
+        // Base message
+        let msg = `Olá, meu nome é ${firstName} e tenho interesse no ${interest}.`;
+
+        // Append ref tag with UTMs (mesma lógica do tracking do rodapé)
+        // Formato nomeado para parsing robusto no DataCrazy:
+        // [ref: source=X | medium=Y | campaign=Z | content=W]
+        const t = state.tracking || {};
+        if (t.utm_source) {
+            const parts = ['source=' + t.utm_source];
+            if (t.utm_medium)   parts.push('medium=' + t.utm_medium);
+            if (t.utm_campaign) parts.push('campaign=' + t.utm_campaign);
+            if (t.utm_content)  parts.push('content=' + t.utm_content);
+            msg += `\n\n[ref: ${parts.join(' | ')}]`;
+        }
+
+        return `https://wa.me/${targetNumber}?text=${encodeURIComponent(msg)}`;
+    }
+
     window.lbFinalizeLead = async function () {
         await botSpeak("Enviando seus dados...");
         await submitData('lead');
 
-        await botSpeak(`Perfeito! Em alguns instantes nossa equipe irá entrar em contato com você.`);
-        await new Promise(r => setTimeout(r, 1000));
-        await botSpeak("Enquanto isso, gostaria de responder algumas perguntas para receber um atendimento ainda mais personalizado?");
+        await botSpeak(`Perfeito, ${(state.lead.name || '').split(' ')[0]}! Seus dados foram registrados.`);
+        await new Promise(r => setTimeout(r, 800));
+        await botSpeak("Agora é só clicar no botão abaixo para falar direto com nossa equipe no WhatsApp e agilizar seu atendimento.");
+
+        const waLink = buildWhatsAppLink();
 
         const body = document.getElementById('lb-body');
         const btnDiv = document.createElement('div');
         btnDiv.className = 'lb-options';
         btnDiv.innerHTML = `
-            <button class="lb-option-btn btn-primary" onclick="window.lbStartQuiz()">Sim, quero responder</button>
-            <button class="lb-option-btn btn-secondary" onclick="window.lbEndChat()">Não, obrigado</button>
+            <a href="${waLink}" target="_blank" rel="noopener"
+               class="lb-option-btn btn-primary"
+               style="text-decoration:none; display:flex; align-items:center; justify-content:center; gap:8px;"
+               onclick="window.lbTrackWhatsAppClick && window.lbTrackWhatsAppClick()">
+                <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38c1.45.79 3.08 1.21 4.79 1.21 5.46 0 9.91-4.45 9.91-9.91C21.95 6.45 17.5 2 12.04 2zm5.8 14.01c-.24.68-1.19 1.26-1.94 1.42-.51.11-1.18.2-3.43-.74-2.88-1.19-4.73-4.12-4.87-4.31-.14-.19-1.17-1.55-1.17-2.96s.74-2.1 1-2.39c.26-.29.57-.36.76-.36l.55.01c.18.01.42-.07.65.5.24.58.82 2 .89 2.15.07.14.12.31.02.5-.09.19-.14.31-.28.48-.14.17-.29.37-.42.5-.14.14-.28.29-.12.57.16.28.71 1.17 1.53 1.9 1.05.94 1.94 1.23 2.22 1.37.28.14.44.12.6-.07.16-.19.69-.81.87-1.09.18-.28.37-.23.62-.14.25.09 1.6.75 1.87.89.28.14.46.21.53.32.07.12.07.66-.17 1.34z"></path></svg>
+                Iniciar conversa no WhatsApp
+            </a>
         `;
         body.appendChild(btnDiv);
         body.scrollTop = body.scrollHeight;
