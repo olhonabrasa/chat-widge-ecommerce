@@ -445,7 +445,6 @@
                 <select id="lb-interest-type" class="lb-form-input">
                     <option value="">Selecione...</option>
                     <option value="Kit Suporte Suspenso">Kit Suporte Suspenso</option>
-                    <option value="Churrasqueira Automatizada">Churrasqueira Automatizada</option>
                     <option value="Acessórios">Acessórios</option>
                 </select>
             </div>
