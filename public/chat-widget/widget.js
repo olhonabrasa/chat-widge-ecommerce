@@ -445,7 +445,7 @@
                 <select id="lb-interest-type" class="lb-form-input">
                     <option value="">Selecione...</option>
                     <option value="Kit Suporte Suspenso">Kit Suporte Suspenso</option>
-                    <option value="Acessórios">Acessórios</option>
+                    <option value="Grelhas e Acessórios">Acessórios</option>
                 </select>
             </div>
             <button class="lb-form-btn" onclick="window.lbSubmitContactInfo()">Continuar</button>
@@ -473,30 +473,90 @@
         }, 100);
     };
 
+    // ============================================================
+    // VALIDAÇÕES DE FORMULÁRIO (WhatsApp / E-mail / CEP)
+    // ============================================================
+    const DDDS_VALIDOS = [11,12,13,14,15,16,17,18,19,21,22,24,27,28,31,32,33,34,35,37,38,41,42,43,44,45,46,47,48,49,51,53,54,55,61,62,63,64,65,66,67,68,69,71,73,74,75,77,79,81,82,83,84,85,86,87,88,89,91,92,93,94,95,96,97,98,99];
+
+    // Retorna null se válido, ou uma string de erro se inválido.
+    function validarWhatsApp(ddi, nacional) {
+        if (ddi === '55') {
+            if (nacional.length !== 11) return 'WhatsApp incompleto. Use DDD + 9 dígitos. Ex: (48) 99999-9999.';
+            if (!DDDS_VALIDOS.includes(parseInt(nacional.slice(0, 2), 10))) return 'DDD inválido. Confira o número.';
+            if (nacional[2] !== '9') return 'Celular deve ter o 9 na frente, depois do DDD.';
+            return null;
+        }
+        // Outros países: checagem leve por comprimento (E.164: 8 a 15 dígitos no total).
+        const total = ddi.length + nacional.length;
+        if (total < 8 || total > 15) return 'Número de WhatsApp inválido.';
+        return null;
+    }
+
+    function validarEmail(email) {
+        return /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email);
+    }
+
+    // Valida CEP via ViaCEP. Se a API falhar, NÃO bloqueia o lead (modo degradado).
+    async function validarCEP(cepDigits) {
+        if (cepDigits.length !== 8) return { ok: false, msg: 'CEP incompleto. Precisa de 8 dígitos.' };
+        try {
+            const r = await fetch('https://viacep.com.br/ws/' + cepDigits + '/json/');
+            const d = await r.json();
+            if (d.erro) return { ok: false, msg: 'CEP não encontrado. Confira o número.' };
+            return { ok: true, data: d };
+        } catch (e) {
+            console.warn('ViaCEP indisponível, seguindo em modo degradado:', e);
+            return { ok: true, data: null, degraded: true };
+        }
+    }
+
     window.lbSubmitContactInfo = async function () {
-        const name = document.getElementById('lb-name').value;
+        const name = document.getElementById('lb-name').value.trim();
         const phoneRaw = document.getElementById('lb-phone').value;
         const ddi = document.getElementById('lb-ddi').value;
-        const phone = ddi + phoneRaw.replace(/\D/g, ''); // Combine DDI + Numbers only
-        const email = document.getElementById('lb-email').value;
+        const nacional = phoneRaw.replace(/\D/g, '');    // só dígitos, SEM DDI
+        const phone = nacional;                          // enviamos o número nacional; o DataCrazy adiciona o +55
+        const email = document.getElementById('lb-email').value.trim();
         const cep = document.getElementById('lb-cep').value;
+        const cepDigits = cep.replace(/\D/g, '');
         const helpType = document.getElementById('lb-help-type').value;
         const interest = document.getElementById('lb-interest-type').value;
 
-        if (!name || !phone || !email || !cep || !helpType || !interest) {
+        // 1) Campos obrigatórios
+        if (!name || !nacional || !email || !cepDigits || !helpType || !interest) {
             showInlineError("Por favor, preencha todos os campos obrigatórios.");
             return;
         }
 
-        // --- Loading State ---
+        // 2) WhatsApp - formato válido (obriga DDD + 9 na frente no Brasil)
+        const erroFone = validarWhatsApp(ddi, nacional);
+        if (erroFone) { showInlineError(erroFone); return; }
+
+        // 3) E-mail - formato válido
+        if (!validarEmail(email)) { showInlineError("E-mail inválido. Confira o endereço."); return; }
+
+        // --- Loading State (antes da chamada externa ao ViaCEP) ---
         const btn = document.querySelector('.lb-form-btn');
         const originalBtnText = btn.innerText;
-        btn.innerText = 'Enviando...';
+        btn.innerText = 'Validando...';
         btn.disabled = true;
 
-        state.lead = { ...state.lead, name, phone, email, cep, helpType, interest };
+        // 4) CEP - formato + existência (ViaCEP)
+        const cepRes = await validarCEP(cepDigits);
+        if (!cepRes.ok) {
+            showInlineError(cepRes.msg);
+            btn.innerText = originalBtnText;
+            btn.disabled = false;
+            return;
+        }
+        // Enriquece o lead com cidade/UF do ViaCEP (útil para instalação regional)
+        if (cepRes.data) {
+            state.lead.cidade = cepRes.data.localidade || '';
+            state.lead.uf = cepRes.data.uf || '';
+        }
 
-        // --- Direct Submission (No Validation) ---
+        btn.innerText = 'Enviando...';
+        state.lead = { ...state.lead, name, phone, email, cep, helpType, interest };
         proceedToNextStep(name, phone, email, cep);
     };
 
@@ -581,12 +641,16 @@
         // Append ref tag with UTMs (mesma lógica do tracking do rodapé)
         // Formato nomeado para parsing robusto no DataCrazy:
         // [ref: source=X | medium=Y | campaign=Z | content=W]
+        // tel = telefone do formulário, para reconciliar quando o lead
+        // enviar a mensagem de um número diferente do cadastrado.
         const t = state.tracking || {};
-        if (t.utm_source) {
-            const parts = ['source=' + t.utm_source];
-            if (t.utm_medium)   parts.push('medium=' + t.utm_medium);
-            if (t.utm_campaign) parts.push('campaign=' + t.utm_campaign);
-            if (t.utm_content)  parts.push('content=' + t.utm_content);
+        const parts = [];
+        if (t.utm_source)   parts.push('source=' + t.utm_source);
+        if (t.utm_medium)   parts.push('medium=' + t.utm_medium);
+        if (t.utm_campaign) parts.push('campaign=' + t.utm_campaign);
+        if (t.utm_content)  parts.push('content=' + t.utm_content);
+        if (state.lead.phone) parts.push('tel=' + state.lead.phone);
+        if (parts.length) {
             msg += `\n\n[ref: ${parts.join(' | ')}]`;
         }
 
