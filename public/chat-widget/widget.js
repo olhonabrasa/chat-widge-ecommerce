@@ -478,12 +478,18 @@
     // ============================================================
     const DDDS_VALIDOS = [11,12,13,14,15,16,17,18,19,21,22,24,27,28,31,32,33,34,35,37,38,41,42,43,44,45,46,47,48,49,51,53,54,55,61,62,63,64,65,66,67,68,69,71,73,74,75,77,79,81,82,83,84,85,86,87,88,89,91,92,93,94,95,96,97,98,99];
 
+    // Bloqueia apenas numero com todos os digitos iguais (ex: 99999999999, 11111111111).
+    function pareceNumeroFalso(nacional) {
+        return new Set(nacional).size === 1;
+    }
+
     // Retorna null se válido, ou uma string de erro se inválido.
     function validarWhatsApp(ddi, nacional) {
         if (ddi === '55') {
             if (nacional.length !== 11) return 'WhatsApp incompleto. Use DDD + 9 dígitos. Ex: (48) 99999-9999.';
             if (!DDDS_VALIDOS.includes(parseInt(nacional.slice(0, 2), 10))) return 'DDD inválido. Confira o número.';
             if (nacional[2] !== '9') return 'Celular deve ter o 9 na frente, depois do DDD.';
+            if (pareceNumeroFalso(nacional)) return 'Esse número não parece válido. Digite seu WhatsApp real para conseguirmos te atender.';
             return null;
         }
         // Outros países: checagem leve por comprimento (E.164: 8 a 15 dígitos no total).
@@ -636,7 +642,7 @@
         const interest = state.lead.interest || 'Kit Suporte Suspenso';
 
         // Base message
-        let msg = `Olá, meu nome é ${firstName} e tenho interesse no ${interest}.`;
+        let msg = `Olá, meu nome é ${firstName} e tenho interesse em: ${interest}.`;
 
         // Append ref tag with UTMs (mesma lógica do tracking do rodapé)
         // Formato nomeado para parsing robusto no DataCrazy:
