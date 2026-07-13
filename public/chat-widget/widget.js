@@ -445,7 +445,7 @@
                 <select id="lb-interest-type" class="lb-form-input">
                     <option value="">Selecione...</option>
                     <option value="Kit Suporte Suspenso">Kit Suporte Suspenso</option>
-                    <option value="Grelhas e Acessórios">Acessórios</option>
+                    <option value="Grelhas e Acessórios">Grelhas e Acessórios</option>
                 </select>
             </div>
             <button class="lb-form-btn" onclick="window.lbSubmitContactInfo()">Continuar</button>
