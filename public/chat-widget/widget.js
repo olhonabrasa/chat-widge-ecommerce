@@ -868,8 +868,10 @@
         const getCookie = (name) => {
             const value = `; ${document.cookie}`;
             const parts = value.split(`; ${name}=`);
-            if (parts.length === 2) return parts.pop().split(';').shift();
-            return '';
+            if (parts.length !== 2) return '';
+            const raw = parts.pop().split(';').shift();
+            // O script Get_UTM da Wbuy grava os cookies com encodeURIComponent.
+            try { return decodeURIComponent(raw); } catch (e) { return raw; }
         };
 
         // --- Helper for Event ID ---
@@ -902,6 +904,17 @@
         const deviceInfo = getDeviceInfo();
         const urlParams = new URLSearchParams(window.location.search);
 
+        // URL primeiro; se nao houver, cai no cookie gravado pelo Get_UTM (Wbuy, ID 22343).
+        // Recupera a atribuicao do lead que clicou no anuncio, saiu, e voltou depois.
+        // IMPORTANTE: depende do Get_UTM v2 (last-touch). Com o Get_UTM antigo
+        // (primeiro clique, nunca sobrescreve) o cookie traz campanha velha.
+        const pick = (name) => urlParams.get(name) || getCookie(name) || '';
+
+        // Diagnostico: de onde veio a UTM (url / cookie / none).
+        const utmCapture = urlParams.get('utm_source')
+            ? 'url'
+            : (getCookie('utm_source') ? 'cookie' : 'none');
+
         const tracking = {
             // Unique Event ID
             event_id: generateEventId(),
@@ -910,20 +923,21 @@
             device_os: deviceInfo.os,
             device_type: deviceInfo.type,
 
-            // Standard UTMs
-            utm_source: urlParams.get('utm_source') || '',
-            utm_medium: urlParams.get('utm_medium') || '',
-            utm_campaign: urlParams.get('utm_campaign') || '',
-            utm_term: urlParams.get('utm_term') || '',
-            utm_content: urlParams.get('utm_content') || '',
+            // Standard UTMs (URL -> cookie)
+            utm_source: pick('utm_source'),
+            utm_medium: pick('utm_medium'),
+            utm_campaign: pick('utm_campaign'),
+            utm_term: pick('utm_term'),
+            utm_content: pick('utm_content'),
+            utm_capture: utmCapture,
 
-            // Ad Platform IDs
-            fbclid: urlParams.get('fbclid') || '',
-            gclid: urlParams.get('gclid') || '',
-            ttclid: urlParams.get('ttclid') || '',
-            wbraid: urlParams.get('wbraid') || '',
-            gbraid: urlParams.get('gbraid') || '',
-            msclid: urlParams.get('msclid') || '',
+            // Ad Platform IDs (URL -> cookie)
+            fbclid: pick('fbclid'),
+            gclid: pick('gclid'),
+            ttclid: pick('ttclid'),
+            wbraid: pick('wbraid'),
+            gbraid: pick('gbraid'),
+            msclid: pick('msclkid') || pick('msclid'),
             li_fat_id: urlParams.get('li_fat_id') || '',
             epik: urlParams.get('epik') || '',
 
