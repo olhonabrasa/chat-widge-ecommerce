@@ -647,15 +647,22 @@
         // Append ref tag with UTMs (mesma lógica do tracking do rodapé)
         // Formato nomeado para parsing robusto no DataCrazy:
         // [ref: source=X | medium=Y | campaign=Z | content=W]
-        // tel = telefone do formulário, para reconciliar quando o lead
-        // enviar a mensagem de um número diferente do cadastrado.
+        // Ref tag em formato DETERMINISTICO para o parse no DataCrazy:
+        //   - tel SEMPRE vem primeiro (usado para reconciliar o lead)
+        //   - os 4 campos de UTM vem sempre JUNTOS (ou nenhum), nesta ordem,
+        //     mesmo que algum esteja vazio. Isso mantem "content" como ultimo
+        //     campo, que e o que a regex do DataCrazy ancora.
+        // Formato final:
+        //   [ref: tel=48999999999 | source=meta | medium=cpc | campaign=X | content=Y]
         const t = state.tracking || {};
         const parts = [];
-        if (t.utm_source)   parts.push('source=' + t.utm_source);
-        if (t.utm_medium)   parts.push('medium=' + t.utm_medium);
-        if (t.utm_campaign) parts.push('campaign=' + t.utm_campaign);
-        if (t.utm_content)  parts.push('content=' + t.utm_content);
         if (state.lead.phone) parts.push('tel=' + state.lead.phone);
+        if (t.utm_source) {
+            parts.push('source=' + (t.utm_source || ''));
+            parts.push('medium=' + (t.utm_medium || ''));
+            parts.push('campaign=' + (t.utm_campaign || ''));
+            parts.push('content=' + (t.utm_content || ''));
+        }
         if (parts.length) {
             msg += `\n\n[ref: ${parts.join(' | ')}]`;
         }
