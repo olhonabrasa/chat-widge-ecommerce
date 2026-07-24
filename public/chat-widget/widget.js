@@ -950,6 +950,21 @@
         state.tracking = tracking;
     }
 
+    // --- GTM / dataLayer ---
+    window.lbTrackWhatsAppClick = function (local) {
+        try {
+            window.dataLayer = window.dataLayer || [];
+            window.dataLayer.push({
+                event: 'whatsapp_click',
+                wa_local: local || 'widget_loja',
+                wa_event_id: (state.tracking && state.tracking.event_id) || '',
+                wa_platform: (state.tracking && state.tracking.conversion_platform) || ''
+            });
+        } catch (e) {
+            console.warn('lbTrackWhatsAppClick falhou:', e);
+        }
+    };
+
     // --- Initialization ---
     function init() {
         injectStyles();
