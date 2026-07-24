@@ -614,9 +614,9 @@
             const waLink = `https://wa.me/${targetNumber}?text=${encodeURIComponent(msg)}`;
 
             btnDiv.innerHTML = `
-                <a href="${waLink}" target="_blank" class="lb-option-btn btn-primary" style="text-decoration:none; display:block; text-align:center;">
+                <a href="${waLink}" target="_blank" class="lb-option-btn btn-primary" style="text-decoration:none; display:block; text-align:center;"
+                onclick="window.lbTrackWhatsAppClick && window.lbTrackWhatsAppClick('widget_fallback')">
                     Falar no WhatsApp
-                    onclick="window.lbTrackWhatsAppClick && window.lbTrackWhatsAppClick('widget_fallback')"
                 </a>
             `;
             body.appendChild(btnDiv);
