@@ -404,8 +404,11 @@
                 <label class="lb-form-label">Nome e Sobrenome</label>
                 <input type="text" id="lb-name" class="lb-form-input" placeholder="Seu nome completo">
             </div>
-            <div class="lb-form-group">
+               <div class="lb-form-group">
                 <label class="lb-form-label">WhatsApp</label>
+                <div style="font-size:12px; color:#888; margin:-2px 0 8px; line-height:1.35;">
+                    Informe o mesmo número que você usa no WhatsApp — é por ele que vamos te atender.
+                </div>
                 <div class="lb-phone-container">
                     <select id="lb-ddi" class="lb-ddi-select">
                         <option value="55" selected>🇧🇷 +55</option>
