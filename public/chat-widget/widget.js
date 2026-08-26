@@ -637,13 +637,28 @@
     // lbShowInterestOptions, lbHandleInterest, lbShowProjectOptions, lbHandleProject deleted.
 
     // --- Build WhatsApp deep link with tracking ref tag ---
-    function buildWhatsAppLink() {
+      function buildWhatsAppLink() {
         const targetNumber = '554740420956';
         const firstName = (state.lead.name || '').split(' ')[0] || '';
         const interest = state.lead.interest || 'Kit Suporte Suspenso';
 
         // Base message
         let msg = `Olá, meu nome é ${firstName} e tenho interesse em: ${interest}.`;
+
+        // Ref tag em formato DETERMINISTICO para reconciliacao no DataCrazy:
+        //   - tel SEMPRE vem primeiro (numero digitado no formulario)
+        //   - os 4 campos de UTM vem sempre JUNTOS (ou nenhum), nesta ordem,
+        //     mantendo "content" como ultimo campo (ancora da regex).
+        // Formato final:
+        //   [ref: tel=48999999999 | source=meta | medium=cpc | campaign=X | content=Y]
+        // NAO REMOVER: sem o tel= e impossivel reconciliar lead que chama
+        // de um numero diferente do que cadastrou no formulario.
+        const t = state.tracking || {};
+        const parts = [];
+        if (state.lead.phone) parts.push('tel=' + state.lead.phone);
+        if (parts.length) {
+            msg += `\n\n[ref: ${parts.join(' | ')}]`;
+        }
 
         return `https://wa.me/${targetNumber}?text=${encodeURIComponent(msg)}`;
     }
