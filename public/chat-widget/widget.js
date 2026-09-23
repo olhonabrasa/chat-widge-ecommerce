@@ -6,6 +6,19 @@
         textColor: '#ffffff',
         botName: 'Projetos Olho na Brasa',
         botAvatar: 'https://s3.1app.com.br/master/project_24727/xy6IrcJy1jkUGTlM4qSc7cF1suHmQyDE.jpg',
+                // Backend = mesma origem de onde este widget.js foi carregado (Cloudflare, Netlify ou dominio proprio).
+        // Assim, trocar de hospedagem exige mudar so o <script src> na loja, nunca este arquivo.
+        // Rota /api/collect-lead existe no Cloudflare (functions/api) e na Netlify (redirect no netlify.toml).
+        // FALLBACK so e usado se o script for colado inline (sem src).
+        backendUrl: (function () {
+            var FALLBACK = 'https://widget.olhonabrasa.com.br/api/collect-lead';
+            try {
+                var src = document.currentScript && document.currentScript.src;
+                return src ? new URL(src).origin + '/api/collect-lead' : FALLBACK;
+            } catch (e) {
+                return FALLBACK;
+            }
+        })(),
         delays: {
             typing: 1000,
             message: 1500,
