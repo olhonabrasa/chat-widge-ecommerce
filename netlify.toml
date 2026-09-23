@@ -2,6 +2,11 @@
   publish = "public"
   functions = "netlify/functions"
 
+# Mesma rota usada no Cloudflare Pages (/api/*), para o widget funcionar nas duas hospedagens.
+[[redirects]]
+  from = "/api/*"
+  to = "/.netlify/functions/:splat"
+  status = 200
 [[redirects]]
   from = "/*"
   to = "/index.html"
