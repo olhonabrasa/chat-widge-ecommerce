@@ -256,8 +256,8 @@
 
         const badgeHTML = `
             <div id="onb-badge-best" class="onb-badge-best-option">
-                <div class="onb-badge-check">✓</div>
-                <div class="onb-badge-title">Melhor Opção</div>
+                <div class="onb-badge-check">\u2713</div>
+                <div class="onb-badge-title">Melhor Op\u00E7\u00E3o</div>
                 <div class="onb-badge-kit">KIT</div>
                 <div class="onb-badge-sub">${kitSize}L X 50C</div>
             </div>
@@ -334,7 +334,7 @@
                         ADQUIRIR KIT COMPLETO
                     </a>
                     <button class="onb-btn-block-secondary" id="btn-go-custom">
-                        MONTAR UM KIT ESPECÍFICO
+                        MONTAR UM KIT ESPEC\u00CDFICO
                     </button>
                 </div>
             </div>
@@ -379,9 +379,9 @@
 
         container.innerHTML = `
             <div class="onb-v6-container">
-                <button class="btn-back" id="btn-back-rec">← Voltar para recomendação</button>
+                <button class="btn-back" id="btn-back-rec">\u2190 Voltar para recomenda\u00E7\u00E3o</button>
                 
-                <div class="onb-title" style="font-size: 20px; font-family: var(--onb-font-display); text-transform: uppercase;">Lista de Peças Compatíveis</div>
+                <div class="onb-title" style="font-size: 20px; font-family: var(--onb-font-display); text-transform: uppercase;">Lista de Pe\u00E7as Compat\u00EDveis</div>
                 <div class="onb-subtitle">Baseado nas medidas ${width}x${depth}cm.</div>
 
                 <div class="onb-v6-specs-list">
@@ -414,7 +414,7 @@
                 </div>
 
                 <a href="https://www.olhonabrasa.com.br/churrasqueiras-gourmet" target="_blank" class="onb-btn-block-primary">
-                    VER TODAS AS PEÇAS NA LOJA
+                    VER TODAS AS PE\u00C7AS NA LOJA
                 </a>
             </div>
         `;
@@ -438,7 +438,7 @@
 
         const kit = GRILL_KITS.find(k => width >= k.minWidth && width <= k.maxWidth);
         if (!kit) {
-            alert("Medida fora do padrão. Entre em contato para Sob Medida.");
+            alert("Medida fora do padr\u00E3o. Entre em contato para Sob Medida.");
             return;
         }
 
@@ -462,7 +462,7 @@
 
     // --- Product Page Injection ---
     function injectProductRecommendation() {
-        console.log("ONB: Tentando injetar recomendação...");
+        console.log("ONB: Tentando injetar recomenda\u00E7\u00E3o...");
 
         // 1. Check if data exists
         const storedData = localStorage.getItem('onb_data');
@@ -524,16 +524,16 @@
             }
 
             if (valueText) {
-                subText = `Baseado nas medidas ${width}x${depth}cm que você forneceu.`;
+                subText = `Baseado nas medidas ${width}x${depth}cm que voc\u00EA forneceu.`;
                 btnText = 'Medidas por Produtos';
             }
         }
 
         // Default State (No Data or No Context Match)
         if (!valueText) {
-            console.log("ONB: Sem dados ou contexto. Exibindo widget padrão.");
+            console.log("ONB: Sem dados ou contexto. Exibindo widget padr\u00E3o.");
             isDefault = true;
-            titleHTML = 'DÚVIDAS <span>SOBRE MEDIDAS</span>';
+            titleHTML = 'D\u00DAVIDAS <span>SOBRE MEDIDAS</span>';
             valueText = 'Use nossa calculadora e descubra a medida exata para sua churrasqueira';
             // For default state, valueText acts as the subtitle/description in the box or we adjust layout
             // User requested: Font Alfa: (black: DUVIDAS) (laranja: SOBRE MEDIDAS)
@@ -615,7 +615,7 @@
                 });
             }
         } else {
-            console.log("ONB: Wrapper de variação não encontrado.");
+            console.log("ONB: Wrapper de varia\u00E7\u00E3o n\u00E3o encontrado.");
         }
     }
 
