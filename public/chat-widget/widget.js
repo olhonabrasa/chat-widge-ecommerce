@@ -27,32 +27,32 @@
     };
 
     const CALLOUT_MESSAGES = [
-        "Olá! Tudo bem? 👋 Estamos on-line no WhatsApp se precisar de ajuda!",
-        "ei, posso te ajudar com algum dúvida? 🤔",
-        "Já sabe as medidas da sua churrasqueira? Se precisar estamos disponiveis aqui..."
+        "Ol\u00E1! Tudo bem? \uD83D\uDC4B Estamos on-line no WhatsApp se precisar de ajuda!",
+        "ei, posso te ajudar com algum d\u00FAvida? \uD83E\uDD14",
+        "J\u00E1 sabe as medidas da sua churrasqueira? Se precisar estamos disponiveis aqui..."
     ];
 
     const QUESTIONS = [
         {
             id: 'custom-qntd-pessoas-1-14',
-            question: 'Para quantas pessoas você costuma fazer churrasco?',
+            question: 'Para quantas pessoas voc\u00EA costuma fazer churrasco?',
             type: 'radio',
             options: [
-                { label: 'Até 10 pessoas (família próxima)', value: 'Costumo fazer churrasco para até 10 pessoas (família próxima)' },
-                { label: '10-20 pessoas (amigos próximos)', value: 'Costumo fazer churrasco para 10 a 20 pessoas' },
+                { label: 'At\u00E9 10 pessoas (fam\u00EDlia pr\u00F3xima)', value: 'Costumo fazer churrasco para at\u00E9 10 pessoas (fam\u00EDlia pr\u00F3xima)' },
+                { label: '10-20 pessoas (amigos pr\u00F3ximos)', value: 'Costumo fazer churrasco para 10 a 20 pessoas' },
                 { label: '20+ pessoas (eventos/festas)', value: 'Costumo fazer churrasco para mais de 20 pessoas (eventos)' }
             ]
         },
         {
             id: 'custom-tipo-preparo-1-13',
-            question: 'Quais cortes você mais prepara?',
+            question: 'Quais cortes voc\u00EA mais prepara?',
             type: 'checkbox',
             maxSelect: 5,
             options: [
                 { label: 'Picanha', value: 'Gosto de preparar Picanha' },
                 { label: 'Costela', value: 'Gosto de preparar Costela' },
-                { label: 'Fraldinha/Contra-filé', value: 'Gosto de preparar Fraldinha ou Contra-filé' },
-                { label: 'Linguiça/Medalhões', value: 'Gosto de preparar Linguiça ou Medalhões' },
+                { label: 'Fraldinha/Contra-fil\u00E9', value: 'Gosto de preparar Fraldinha ou Contra-fil\u00E9' },
+                { label: 'Lingui\u00E7a/Medalh\u00F5es', value: 'Gosto de preparar Lingui\u00E7a ou Medalh\u00F5es' },
                 { label: 'Frango/Peixe', value: 'Gosto de preparar Frango ou Peixe' }
             ]
         },
@@ -62,42 +62,42 @@
             type: 'radio',
             options: [
                 { label: 'Sim, tem barra frontal', value: 'Minha churrasqueira possui barra frontal' },
-                { label: 'Não, é só alvenaria', value: 'Minha churrasqueira não tem barra, é só alvenaria' },
-                { label: 'Não tenho churrasqueira ainda (em obra)', value: 'Ainda não tenho churrasqueira (estou em obra)' }
+                { label: 'N\u00E3o, \u00E9 s\u00F3 alvenaria', value: 'Minha churrasqueira n\u00E3o tem barra, \u00E9 s\u00F3 alvenaria' },
+                { label: 'N\u00E3o tenho churrasqueira ainda (em obra)', value: 'Ainda n\u00E3o tenho churrasqueira (estou em obra)' }
             ]
         },
         {
             id: 'custom-conhecia-o-kit-1-11',
-            question: 'Você já conhecia o Kit Suporte Suspenso?',
+            question: 'Voc\u00EA j\u00E1 conhecia o Kit Suporte Suspenso?',
             type: 'radio',
             options: [
-                { label: 'Sim, estava procurando especificamente', value: 'Sim, eu já conhecia e estava procurando especificamente o Kit Suporte Suspenso' },
-                { label: 'Já ouvi falar, mas não conheço detalhes', value: 'Já ouvi falar do Kit, mas não conheço os detalhes' },
-                { label: 'Não, é primeira vez que vejo', value: 'Não, é a primeira vez que vejo o Kit' },
-                { label: 'Já vi na casa de amigos', value: 'Já vi o Kit na casa de amigos' }
+                { label: 'Sim, estava procurando especificamente', value: 'Sim, eu j\u00E1 conhecia e estava procurando especificamente o Kit Suporte Suspenso' },
+                { label: 'J\u00E1 ouvi falar, mas n\u00E3o conhe\u00E7o detalhes', value: 'J\u00E1 ouvi falar do Kit, mas n\u00E3o conhe\u00E7o os detalhes' },
+                { label: 'N\u00E3o, \u00E9 primeira vez que vejo', value: 'N\u00E3o, \u00E9 a primeira vez que vejo o Kit' },
+                { label: 'J\u00E1 vi na casa de amigos', value: 'J\u00E1 vi o Kit na casa de amigos' }
             ]
         },
         {
             id: 'custom-churrasqueira-ja-esta-pronta-1-10',
-            question: 'Sua churrasqueira já está pronta ou está em obra/reforma?',
+            question: 'Sua churrasqueira j\u00E1 est\u00E1 pronta ou est\u00E1 em obra/reforma?',
             type: 'radio',
             options: [
-                { label: 'Em obra/reforma - ainda construindo', value: 'Minha churrasqueira está em obra/reforma' },
-                { label: 'Pronta - só trocar o kit', value: 'Minha churrasqueira já está pronta, só falta o kit' },
+                { label: 'Em obra/reforma - ainda construindo', value: 'Minha churrasqueira est\u00E1 em obra/reforma' },
+                { label: 'Pronta - s\u00F3 trocar o kit', value: 'Minha churrasqueira j\u00E1 est\u00E1 pronta, s\u00F3 falta o kit' },
                 { label: 'Planejando - ainda escolhendo', value: 'Estou apenas planejando e escolhendo' }
             ]
         },
         {
             id: 'custom-maior-dificuldade-1-9',
-            question: 'Qual é sua maior dificuldade no churrasco hoje?',
+            question: 'Qual \u00E9 sua maior dificuldade no churrasco hoje?',
             type: 'checkbox',
             options: [
-                { label: 'Queimar a carne (não acerto o ponto)', value: 'Tenho dificuldade em acertar o ponto (queimo a carne)' },
+                { label: 'Queimar a carne (n\u00E3o acerto o ponto)', value: 'Tenho dificuldade em acertar o ponto (queimo a carne)' },
                 { label: 'Limpeza demorada (trabalheira)', value: 'Acho a limpeza muito demorada e trabalhosa' },
-                { label: 'Subir o nível da Carne sem tirar a Grelha', value: 'Tenho dificuldade para subir o nível da carne sem tirar a grelha' },
-                { label: 'Colocar ou trocar o Carvão', value: 'Tenho dificuldade para colocar ou trocar o carvão' },
-                { label: 'Preparar vários tipos de carne ao mesmo tempo', value: 'Tenho dificuldade em preparar vários tipos de carne ao mesmo tempo' },
-                { label: 'Servir o churrasco de 1 só vez', value: 'Tenho dificuldade em servir o churrasco de uma só vez' }
+                { label: 'Subir o n\u00EDvel da Carne sem tirar a Grelha', value: 'Tenho dificuldade para subir o n\u00EDvel da carne sem tirar a grelha' },
+                { label: 'Colocar ou trocar o Carv\u00E3o', value: 'Tenho dificuldade para colocar ou trocar o carv\u00E3o' },
+                { label: 'Preparar v\u00E1rios tipos de carne ao mesmo tempo', value: 'Tenho dificuldade em preparar v\u00E1rios tipos de carne ao mesmo tempo' },
+                { label: 'Servir o churrasco de 1 s\u00F3 vez', value: 'Tenho dificuldade em servir o churrasco de uma s\u00F3 vez' }
             ]
         },
         {
@@ -106,37 +106,37 @@
             type: 'checkbox',
             maxSelect: 5,
             options: [
-                { label: 'As medidas não ficarem perfeitas com a minha churrasqueira', value: 'Tenho medo das medidas não ficarem perfeitas' },
-                { label: 'O preço fugir do meu orçamento', value: 'Tenho preocupação com o preço fugir do orçamento' },
+                { label: 'As medidas n\u00E3o ficarem perfeitas com a minha churrasqueira', value: 'Tenho medo das medidas n\u00E3o ficarem perfeitas' },
+                { label: 'O pre\u00E7o fugir do meu or\u00E7amento', value: 'Tenho preocupa\u00E7\u00E3o com o pre\u00E7o fugir do or\u00E7amento' },
                 { label: 'Prazo de entrega muito demorado', value: 'Tenho receio do prazo de entrega ser demorado' },
-                { label: 'Qualidade do material muito ruim e sem durabilidade', value: 'Tenho preocupação com a qualidade e durabilidade do material' },
-                { label: 'Se enferruja ou é corroído pela maresia', value: 'Tenho medo que enferruje ou sofra com maresia' }
+                { label: 'Qualidade do material muito ruim e sem durabilidade', value: 'Tenho preocupa\u00E7\u00E3o com a qualidade e durabilidade do material' },
+                { label: 'Se enferruja ou \u00E9 corro\u00EDdo pela maresia', value: 'Tenho medo que enferruje ou sofra com maresia' }
             ]
         },
         {
             id: 'custom-text-perfect-bbq',
-            text: 'O que não pode faltar no seu churrasco ideal?',
+            text: 'O que n\u00E3o pode faltar no seu churrasco ideal?',
             type: 'checkbox',
             maxSelect: 5,
             options: [
-                { label: 'Cortes Nobres (Picanha, Ancho, etc)', value: 'Não pode faltar Cortes Nobres' },
-                { label: 'Praticidade (Acendimento fácil)', value: 'Não pode faltar Praticidade' },
-                { label: 'Conforto (Sem fumaça)', value: 'Não pode faltar Conforto' },
-                { label: 'Social (Família e amigos)', value: 'Não pode faltar o Social' },
-                { label: 'Bebida Gelada', value: 'Não pode faltar Bebida Gelada' }
+                { label: 'Cortes Nobres (Picanha, Ancho, etc)', value: 'N\u00E3o pode faltar Cortes Nobres' },
+                { label: 'Praticidade (Acendimento f\u00E1cil)', value: 'N\u00E3o pode faltar Praticidade' },
+                { label: 'Conforto (Sem fuma\u00E7a)', value: 'N\u00E3o pode faltar Conforto' },
+                { label: 'Social (Fam\u00EDlia e amigos)', value: 'N\u00E3o pode faltar o Social' },
+                { label: 'Bebida Gelada', value: 'N\u00E3o pode faltar Bebida Gelada' }
             ]
         },
         {
             id: 'custom-text-project-vision',
-            text: 'O que é prioridade para o seu projeto?',
+            text: 'O que \u00E9 prioridade para o seu projeto?',
             type: 'checkbox',
             maxSelect: 5,
             options: [
-                { label: 'Estética (Design moderno)', value: 'Prioridade é Estética' },
-                { label: 'Funcionalidade (Sistema completo com acessórios)', value: 'Prioridade é Funcionalidade (Sistema completo)' },
-                { label: 'Durabilidade (Inox)', value: 'Prioridade é Durabilidade' },
-                { label: 'Facilidade (Limpeza simples)', value: 'Prioridade é Facilidade de Limpeza' },
-                { label: 'Exclusividade (Sob medida)', value: 'Prioridade é Exclusividade' }
+                { label: 'Est\u00E9tica (Design moderno)', value: 'Prioridade \u00E9 Est\u00E9tica' },
+                { label: 'Funcionalidade (Sistema completo com acess\u00F3rios)', value: 'Prioridade \u00E9 Funcionalidade (Sistema completo)' },
+                { label: 'Durabilidade (Inox)', value: 'Prioridade \u00E9 Durabilidade' },
+                { label: 'Facilidade (Limpeza simples)', value: 'Prioridade \u00E9 Facilidade de Limpeza' },
+                { label: 'Exclusividade (Sob medida)', value: 'Prioridade \u00E9 Exclusividade' }
             ]
         }
     ];
@@ -205,7 +205,7 @@
             /* Phone Container */
             .lb-phone-container { display: flex; gap: 8px; align-items: center; width: 100%; box-sizing: border-box; }
             .lb-ddi-select { 
-                flex: 0 0 95px; /* Fixed width for stability, slightly wider for "🇧🇷 +55" */
+                flex: 0 0 95px; /* Fixed width for stability, slightly wider for "\uD83C\uDDE7\uD83C\uDDF7 +55" */
                 width: 95px;
                 padding: 8px 4px; 
                 border: 1px solid #ddd; 
@@ -369,7 +369,7 @@
 
     async function startGreeting() {
         state.step = 1;
-        await botSpeak("Olá, tudo bem?");
+        await botSpeak("Ol\u00E1, tudo bem?");
 
         // Show Welcome Card
         showTyping();
@@ -380,13 +380,13 @@
         const card = document.createElement('div');
         card.className = 'lb-welcome-card';
         card.innerHTML = `
-            <div class="lb-welcome-text">Estamos disponivel para lhe atender e tirar suas dúvidas, vamos lá?</div>
+            <div class="lb-welcome-text">Estamos disponivel para lhe atender e tirar suas d\u00FAvidas, vamos l\u00E1?</div>
             <button class="lb-welcome-btn" onclick="window.lbStartForm()">
                 Sim, conversar via WhatsApp 
                 <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
             </button>
             <div class="lb-welcome-footer">
-                Clicando acima você aceita nossas <a href="https://www.olhonabrasa.com.br/m/politica-de-privacidade/" target="_blank">Políticas de privacidade</a>
+                Clicando acima voc\u00EA aceita nossas <a href="https://www.olhonabrasa.com.br/m/politica-de-privacidade/" target="_blank">Pol\u00EDticas de privacidade</a>
             </div>
         `;
         body.appendChild(card);
@@ -416,21 +416,21 @@
                <div class="lb-form-group">
                 <label class="lb-form-label">WhatsApp</label>
                 <div style="font-size:12px; color:#888; margin:-2px 0 8px; line-height:1.35;">
-                    Informe o mesmo número que você usa no WhatsApp — é por ele que vamos te atender.
+                    Informe o mesmo n\u00FAmero que voc\u00EA usa no WhatsApp \u2014 \u00E9 por ele que vamos te atender.
                 </div>
                 <div class="lb-phone-container">
                     <select id="lb-ddi" class="lb-ddi-select">
-                        <option value="55" selected>🇧🇷 +55</option>
-                        <option value="1">🇺🇸 +1</option>
-                        <option value="351">🇵🇹 +351</option>
-                        <option value="44">🇬🇧 +44</option>
-                        <option value="34">🇪🇸 +34</option>
-                        <option value="33">🇫🇷 +33</option>
-                        <option value="49">🇩🇪 +49</option>
-                        <option value="39">🇮🇹 +39</option>
-                        <option value="54">🇦🇷 +54</option>
-                        <option value="598">🇺🇾 +598</option>
-                        <option value="595">🇵🇾 +595</option>
+                        <option value="55" selected>\uD83C\uDDE7\uD83C\uDDF7 +55</option>
+                        <option value="1">\uD83C\uDDFA\uD83C\uDDF8 +1</option>
+                        <option value="351">\uD83C\uDDF5\uD83C\uDDF9 +351</option>
+                        <option value="44">\uD83C\uDDEC\uD83C\uDDE7 +44</option>
+                        <option value="34">\uD83C\uDDEA\uD83C\uDDF8 +34</option>
+                        <option value="33">\uD83C\uDDEB\uD83C\uDDF7 +33</option>
+                        <option value="49">\uD83C\uDDE9\uD83C\uDDEA +49</option>
+                        <option value="39">\uD83C\uDDEE\uD83C\uDDF9 +39</option>
+                        <option value="54">\uD83C\uDDE6\uD83C\uDDF7 +54</option>
+                        <option value="598">\uD83C\uDDFA\uD83C\uDDFE +598</option>
+                        <option value="595">\uD83C\uDDF5\uD83C\uDDFE +595</option>
                     </select>
                     <input type="tel" id="lb-phone" class="lb-form-input" placeholder="(00) 00000-0000" style="flex:1;">
                 </div>
@@ -447,8 +447,8 @@
                 <label class="lb-form-label">Como podemos te ajudar?</label>
                 <select id="lb-help-type" class="lb-form-input">
                     <option value="">Selecione...</option>
-                    <option value="Orçamentos">Orçamentos</option>
-                    <option value="Dúvidas">Dúvidas</option>
+                    <option value="Or\u00E7amentos">Or\u00E7amentos</option>
+                    <option value="D\u00FAvidas">D\u00FAvidas</option>
                     <option value="Rastreio de pedidos">Rastreio de pedidos</option>
                 </select>
             </div>
@@ -457,7 +457,7 @@
                 <select id="lb-interest-type" class="lb-form-input">
                     <option value="">Selecione...</option>
                     <option value="Kit Suporte Suspenso">Kit Suporte Suspenso</option>
-                    <option value="Grelhas e Acessórios">Grelhas e Acessórios</option>
+                    <option value="Grelhas e Acess\u00F3rios">Grelhas e Acess\u00F3rios</option>
                 </select>
             </div>
             <button class="lb-form-btn" onclick="window.lbSubmitContactInfo()">Continuar</button>
@@ -486,7 +486,7 @@
     };
 
     // ============================================================
-    // VALIDAÇÕES DE FORMULÁRIO (WhatsApp / E-mail / CEP)
+    // VALIDA\u00C7\u00D5ES DE FORMUL\u00C1RIO (WhatsApp / E-mail / CEP)
     // ============================================================
     const DDDS_VALIDOS = [11,12,13,14,15,16,17,18,19,21,22,24,27,28,31,32,33,34,35,37,38,41,42,43,44,45,46,47,48,49,51,53,54,55,61,62,63,64,65,66,67,68,69,71,73,74,75,77,79,81,82,83,84,85,86,87,88,89,91,92,93,94,95,96,97,98,99];
 
@@ -495,18 +495,18 @@
         return new Set(nacional).size === 1;
     }
 
-    // Retorna null se válido, ou uma string de erro se inválido.
+    // Retorna null se v\u00E1lido, ou uma string de erro se inv\u00E1lido.
     function validarWhatsApp(ddi, nacional) {
         if (ddi === '55') {
-            if (nacional.length !== 11) return 'WhatsApp incompleto. Use DDD + 9 dígitos. Ex: (48) 99999-9999.';
-            if (!DDDS_VALIDOS.includes(parseInt(nacional.slice(0, 2), 10))) return 'DDD inválido. Confira o número.';
+            if (nacional.length !== 11) return 'WhatsApp incompleto. Use DDD + 9 d\u00EDgitos. Ex: (48) 99999-9999.';
+            if (!DDDS_VALIDOS.includes(parseInt(nacional.slice(0, 2), 10))) return 'DDD inv\u00E1lido. Confira o n\u00FAmero.';
             if (nacional[2] !== '9') return 'Celular deve ter o 9 na frente, depois do DDD.';
-            if (pareceNumeroFalso(nacional)) return 'Esse número não parece válido. Digite seu WhatsApp real para conseguirmos te atender.';
+            if (pareceNumeroFalso(nacional)) return 'Esse n\u00FAmero n\u00E3o parece v\u00E1lido. Digite seu WhatsApp real para conseguirmos te atender.';
             return null;
         }
-        // Outros países: checagem leve por comprimento (E.164: 8 a 15 dígitos no total).
+        // Outros pa\u00EDses: checagem leve por comprimento (E.164: 8 a 15 d\u00EDgitos no total).
         const total = ddi.length + nacional.length;
-        if (total < 8 || total > 15) return 'Número de WhatsApp inválido.';
+        if (total < 8 || total > 15) return 'N\u00FAmero de WhatsApp inv\u00E1lido.';
         return null;
     }
 
@@ -514,16 +514,16 @@
         return /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email);
     }
 
-    // Valida CEP via ViaCEP. Se a API falhar, NÃO bloqueia o lead (modo degradado).
+    // Valida CEP via ViaCEP. Se a API falhar, N\u00C3O bloqueia o lead (modo degradado).
     async function validarCEP(cepDigits) {
-        if (cepDigits.length !== 8) return { ok: false, msg: 'CEP incompleto. Precisa de 8 dígitos.' };
+        if (cepDigits.length !== 8) return { ok: false, msg: 'CEP incompleto. Precisa de 8 d\u00EDgitos.' };
         try {
             const r = await fetch('https://viacep.com.br/ws/' + cepDigits + '/json/');
             const d = await r.json();
-            if (d.erro) return { ok: false, msg: 'CEP não encontrado. Confira o número.' };
+            if (d.erro) return { ok: false, msg: 'CEP n\u00E3o encontrado. Confira o n\u00FAmero.' };
             return { ok: true, data: d };
         } catch (e) {
-            console.warn('ViaCEP indisponível, seguindo em modo degradado:', e);
+            console.warn('ViaCEP indispon\u00EDvel, seguindo em modo degradado:', e);
             return { ok: true, data: null, degraded: true };
         }
     }
@@ -532,26 +532,26 @@
         const name = document.getElementById('lb-name').value.trim();
         const phoneRaw = document.getElementById('lb-phone').value;
         const ddi = document.getElementById('lb-ddi').value;
-        const nacional = phoneRaw.replace(/\D/g, '');    // só dígitos, SEM DDI
-        const phone = nacional;                          // enviamos o número nacional; o DataCrazy adiciona o +55
+        const nacional = phoneRaw.replace(/\D/g, '');    // s\u00F3 d\u00EDgitos, SEM DDI
+        const phone = nacional;                          // enviamos o n\u00FAmero nacional; o DataCrazy adiciona o +55
         const email = document.getElementById('lb-email').value.trim();
         const cep = document.getElementById('lb-cep').value;
         const cepDigits = cep.replace(/\D/g, '');
         const helpType = document.getElementById('lb-help-type').value;
         const interest = document.getElementById('lb-interest-type').value;
 
-        // 1) Campos obrigatórios
+        // 1) Campos obrigat\u00F3rios
         if (!name || !nacional || !email || !cepDigits || !helpType || !interest) {
-            showInlineError("Por favor, preencha todos os campos obrigatórios.");
+            showInlineError("Por favor, preencha todos os campos obrigat\u00F3rios.");
             return;
         }
 
-        // 2) WhatsApp - formato válido (obriga DDD + 9 na frente no Brasil)
+        // 2) WhatsApp - formato v\u00E1lido (obriga DDD + 9 na frente no Brasil)
         const erroFone = validarWhatsApp(ddi, nacional);
         if (erroFone) { showInlineError(erroFone); return; }
 
-        // 3) E-mail - formato válido
-        if (!validarEmail(email)) { showInlineError("E-mail inválido. Confira o endereço."); return; }
+        // 3) E-mail - formato v\u00E1lido
+        if (!validarEmail(email)) { showInlineError("E-mail inv\u00E1lido. Confira o endere\u00E7o."); return; }
 
         // --- Loading State (antes da chamada externa ao ViaCEP) ---
         const btn = document.querySelector('.lb-form-btn');
@@ -559,7 +559,7 @@
         btn.innerText = 'Validando...';
         btn.disabled = true;
 
-        // 4) CEP - formato + existência (ViaCEP)
+        // 4) CEP - formato + exist\u00EAncia (ViaCEP)
         const cepRes = await validarCEP(cepDigits);
         if (!cepRes.ok) {
             showInlineError(cepRes.msg);
@@ -567,7 +567,7 @@
             btn.disabled = false;
             return;
         }
-        // Enriquece o lead com cidade/UF do ViaCEP (útil para instalação regional)
+        // Enriquece o lead com cidade/UF do ViaCEP (\u00FAtil para instala\u00E7\u00E3o regional)
         if (cepRes.data) {
             state.lead.cidade = cepRes.data.localidade || '';
             state.lead.uf = cepRes.data.uf || '';
@@ -615,13 +615,13 @@
 
         addMessage(`Tentativa de contato: ${phone}`, 'user');
 
-        botSpeak("Não conseguimos validar seu número. Mas não se preocupe, você pode falar conosco diretamente!").then(() => {
+        botSpeak("N\u00E3o conseguimos validar seu n\u00FAmero. Mas n\u00E3o se preocupe, voc\u00EA pode falar conosco diretamente!").then(() => {
             const btnDiv = document.createElement('div');
             btnDiv.className = 'lb-options';
 
-            // Message format: "Olá, meu nome é {nome} e eu tenho interesse no Kit Suporte Suspenso."
+            // Message format: "Ol\u00E1, meu nome \u00E9 {nome} e eu tenho interesse no Kit Suporte Suspenso."
             const interest = state.lead.interest || "Kit Suporte Suspenso"; // Use selected interest
-            const msg = `Olá, meu nome é ${name} e eu tenho interesse no ${interest}.`;
+            const msg = `Ol\u00E1, meu nome \u00E9 ${name} e eu tenho interesse no ${interest}.`;
             const targetNumber = '554740420956';
             const waLink = `https://wa.me/${targetNumber}?text=${encodeURIComponent(msg)}`;
 
@@ -655,7 +655,7 @@
         const interest = state.lead.interest || 'Kit Suporte Suspenso';
 
         // Base message
-        let msg = `Olá, meu nome é ${firstName} e tenho interesse em: ${interest}.`;
+        let msg = `Ol\u00E1, meu nome \u00E9 ${firstName} e tenho interesse em: ${interest}.`;
 
         // Ref tag em formato DETERMINISTICO para reconciliacao no DataCrazy:
         //   - tel SEMPRE vem primeiro (numero digitado no formulario)
@@ -681,7 +681,7 @@
 
         await botSpeak(`Perfeito, ${(state.lead.name || '').split(' ')[0]}! Seus dados foram registrados.`);
         await new Promise(r => setTimeout(r, 800));
-        await botSpeak("Agora é só clicar no botão abaixo para falar direto com nossa equipe no WhatsApp e agilizar seu atendimento.");
+        await botSpeak("Agora \u00E9 s\u00F3 clicar no bot\u00E3o abaixo para falar direto com nossa equipe no WhatsApp e agilizar seu atendimento.");
 
         const waLink = buildWhatsAppLink();
 
@@ -710,14 +710,14 @@
 
     window.lbEndChat = async function () {
         document.querySelector('.lb-options').remove();
-        addMessage("Não, obrigado", 'user');
+        addMessage("N\u00E3o, obrigado", 'user');
         await botSpeak("Tudo bem! Agradecemos seu contato. Logo falaremos no WhatsApp.");
     };
 
     async function nextQuestion() {
         if (state.quizIndex >= QUESTIONS.length) {
             await submitData('survey');
-            await botSpeak(`Perfeito, ${state.lead.name.split(' ')[0]}. Todas as informações foram registradas e enviadas para nossa equipe. Logo entraremos em contato. Até mais!`);
+            await botSpeak(`Perfeito, ${state.lead.name.split(' ')[0]}. Todas as informa\u00E7\u00F5es foram registradas e enviadas para nossa equipe. Logo entraremos em contato. At\u00E9 mais!`);
             return;
         }
 
@@ -797,11 +797,11 @@
 
     async function submitCheckboxAnswer(qid) {
         if (state.tempCheckboxValues.length === 0) {
-            alert("Por favor, selecione pelo menos uma opção.");
+            alert("Por favor, selecione pelo menos uma op\u00E7\u00E3o.");
             return;
         }
         document.querySelector('.lb-quiz-card').remove();
-        addMessage(`${state.tempCheckboxValues.length} opções selecionadas`, 'user');
+        addMessage(`${state.tempCheckboxValues.length} op\u00E7\u00F5es selecionadas`, 'user');
         state.survey[qid] = state.tempCheckboxValues.join(', ');
         state.quizIndex++;
         setTimeout(nextQuestion, 500);
